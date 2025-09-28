@@ -1,6 +1,8 @@
 #+title: tabbymacs
 #+author: Jędrzej Kędzierski
 
+[[https://melpa.org/#/tabbymacs][file:https://melpa.org/packages/tabbymacs-badge.svg]] [[https://stable.melpa.org/#/tabbymacs][file:https://stable.melpa.org/packages/tabbymacs-badge.svg]]
+
 Tabbymacs is an Emacs minor mode that brings *Tabby AI inline completions* into your editor.
 It displays completions as /ghost text/, similar to GitHub Copilot, but is powered by [[https://www.tabbyml.com/][Tabby]] - an open-source, self-hosted AI coding assistant.
 
@@ -20,18 +22,20 @@ It displays completions as /ghost text/, similar to GitHub Copilot, but is power
 
 * Installation
 
-** Manual
+** Manually
 Clone this repo and add it to your =load-path=:
 #+begin_src emacs-lisp
 (add-to-list 'load-path "/path/to/tabbymacs")
 (require 'tabbymacs)
 #+end_src
 
+** From MELPA
+=M-x package-install RET tabbymacs RET= to install =tabbymacs= from [[https://melpa.org/][MELPA]].
+
 ** Using =use-package=
 #+begin_src emacs-lisp
 ;;Example configuration
 (use-package tabbymacs
-  :load-path "/path/to/tabbymacs"
   :init
   (setq tabbymacs-inline-completion-idle-time 0.6)
   (setq tabbymacs-log-level :debug)
