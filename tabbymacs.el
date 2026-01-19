@@ -289,7 +289,8 @@ FMT and ARGS are like in `message'."
            (uri (tabbymacs--path-to-uri root))
            (init-params
             `(:processId ,(emacs-pid)
-                         :clientInfo (:name "emacs" :version ,(emacs-version))
+                         :clientInfo (:name "emacs"
+                                            :version ,(string-clean-whitespace (emacs-version)))
                          :rootPath ,(file-local-name root)
                          :rootUri ,uri
                          :workspaceFolders
