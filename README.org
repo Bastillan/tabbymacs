@@ -15,10 +15,10 @@ It displays completions as /ghost text/, similar to GitHub Copilot, but is power
 - Lightweight LSP client design with *inline completion* support ([[https://www.tabbyml.com/blog/create-tabby-extension-with-language-server-protocol][approach recommended by Tabby team]])
 
 * Requirements
-- Emacs 27.1+
+- Emacs 28.1+
 - Tabby Server: The backend LLM server, please refer to this [[https://tabby.tabbyml.com/docs/quick-start/installation/docker/][documentation]]
 - Tabby Agent (LSP server): Requires [[https://nodejs.org/en/download/][Node.js]] version v18.0+ and [[https://www.npmjs.com/package/tabby-agent][tabby-agent]] installed (=npm install --global tabby-agent=)
-  - Remember to configure Tabby Agent according to [[https://tabby.tabbyml.com/docs/extensions/configurations/][documentation]]
+  - Remember to configure Tabby Agent according to [[https://tabby.tabbyml.com/docs/extensions/configurations/][documentation]], especially set =endpoint= and =token= values in =~/.tabby-client/agent/config.toml= file.
 
 * Installation
 
@@ -65,3 +65,23 @@ Typing also dismisses the current suggestion.
   - Defines time in seconds to wait before automatically requesting completion
 - =tabbymacs-send-changes-idle-time= (default: =0.5=)
   - Defines time in seconds to wait before sending changes notification to tabby-agent
+
+*** Custom keybings
+You can also override default keybindings maps:
+- =tabbymacs-mode-map=
+  - =tabbymacs-accept-ghost-text=
+  - =tabbymacs-cancel-ghost-text=
+- =tabbymacs-overlay-map=
+  - =tabbymacs-invoked-inline-completion=
+    
+**** Example
+#+begin_src emacs-lisp
+;;Example keybindings override configuration
+(use-package tabbymacs
+  :bind
+  (:map tabbymacs-mode-map
+        ("C-c \\" . tabbymacs-invoked-inline-completion)
+        ("C-c /" . nil)
+   :map tabbymacs-overlay-map
+        ("<tab>" . nil)))
+#+end_src
